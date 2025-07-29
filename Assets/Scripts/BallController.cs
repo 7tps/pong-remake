@@ -8,7 +8,7 @@ public class BallController : MonoBehaviour
 {
 
     public float ballSpeed = 5f;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public static BallController instance;
     
@@ -29,11 +29,6 @@ public class BallController : MonoBehaviour
     public void Start()
     {
         
-        //initialize rigidbody
-        rb = GetComponent<Rigidbody2D>();
-        
-        //start game
-        StartGame();
     }
 
     public void StartGame()
@@ -54,11 +49,5 @@ public class BallController : MonoBehaviour
         
         //set rigidbody velocity
         rb.velocity = new Vector2(xVelocity, yVelocity) * ballSpeed;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

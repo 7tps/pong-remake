@@ -8,8 +8,8 @@ public class GoalController : MonoBehaviour
 {
 
     public bool isLeft;
-    public int score = 0;
-    public TextMeshProUGUI scoreText;
+    public BallController ball;
+    public GameController game;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,16 +20,15 @@ public class GoalController : MonoBehaviour
             if (isLeft)
             {
                 Debug.Log("Opponent scores!");
+                game.IncreaseOpponentScore();
             }
             else
             {
                 Debug.Log("Player scores!");
+                game.IncreasePlayerScore();
             }
         }
         
-        score++;
-        scoreText.text = score.ToString();
-        
-        BallController.instance.StartGame();
+        ball.StartGame();
     }
 }

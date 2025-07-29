@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -11,10 +12,19 @@ public class GameController : MonoBehaviour
     [Header("Game References")]
     public BallController ball;            
     public PlayerController player;        
-    public OpponentController opponent;        
+    public OpponentController opponent;
+    public TextMeshProUGUI playerText;
+    public TextMeshProUGUI opponentText;
+    public int playerScore;
+    public int opponentScore;
+    public int winAmount;
     
     [Header("Countdown Settings")]
-    public float countdownDuration = 1f;  
+    public float countdownDuration = 1f;
+
+    [Header("Scene Settings")] 
+    public string winScene;
+    public string loseScene;
     
     void Start()
     {
@@ -31,6 +41,26 @@ public class GameController : MonoBehaviour
         
         // Start the countdown coroutine
         StartCoroutine(CountdownSequence());
+    }
+
+    public void IncreasePlayerScore()
+    {
+        playerScore++;
+        playerText.text = playerScore.ToString();
+        if (playerScore == winAmount)
+        {
+            SceneManager.LoadScene(winScene);
+        }
+    }
+
+    public void IncreaseOpponentScore()
+    {
+        opponentScore++;   
+        opponentText.text = opponentScore.ToString();
+        if (opponentScore == winAmount)
+        {
+            SceneManager.LoadScene(loseScene);
+        }
     }
     
     IEnumerator CountdownSequence()

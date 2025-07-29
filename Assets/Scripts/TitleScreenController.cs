@@ -5,19 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenController : MonoBehaviour
 {
-    public float delayBeforeLoad = 3f; 
     public string mainScene;
     
     public void PlayGame()
     {
         Debug.Log("Starting game...");
-        StartCoroutine(LoadSceneAfterDelay());
-    }
-    
-    IEnumerator LoadSceneAfterDelay()
-    {
-        // Load the main game scene
-        yield return new WaitForSeconds(delayBeforeLoad);
         SceneManager.LoadScene(mainScene);
     }
 
